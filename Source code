@@ -1,0 +1,42 @@
+
+import pandas as pd
+import numpy as np
+from sklearn.linear_model import LinearRegression
+
+# STEP 1: Load country codes
+iso_codes = pd.read_csv('https://raw.githubusercontent.com/datasets/country-codes/master/data/country-codes.csv')
+countries_df = iso_codes[['official_name_en', 'ISO3166-1-Alpha-3']].dropna().drop_duplicates()
+countries_df = countries_df.head(193)
+
+# STEP 2: Generate mock data
+years = list(range(1990, 2012))
+data = []
+np.random.seed(42)
+
+for _, row in countries_df.iterrows():
+    country = row['official_name_en']
+    code = row['ISO3166-1-Alpha-3']
+    base_co2 = np.random.uniform(100, 5000)
+
+    for year in years:
+        co2 = base_co2 + np.random.normal(0, 100)
+        ch4 = np.random.uniform(10, 500)
+        n2o = np.random.uniform(1, 100)
+        data.append([country, code, year, co2, ch4, n2o])
+
+# STEP 3: Create DataFrame
+df = pd.DataFrame(data, columns=["Country", "Country_Code", "Year", "CO2", "CH4", "N2O"])
+
+# STEP 4: Train model and predict
+X = df[['Year']]
+y = df['CO2']
+model = LinearRegression()
+model.fit(X, y)
+
+future_year = 2025
+predicted_co2 = model.predict(pd.DataFrame({'Year': [future_year]}))[0]
+print(f"Predicted average CO2 emission for {future_year}: {predicted_co2:.2f} tons")
+
+# STEP 5: Save to Excel
+df.to_excel("emissions_1990_2011_with_codes.xlsx", index=False)
+print("Excel file saved as 'emissions_1990_2011_with_codes.xlsx'")
