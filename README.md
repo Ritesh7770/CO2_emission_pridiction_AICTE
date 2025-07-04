@@ -6,7 +6,8 @@ Weak 1
 # Actual vs Predicted (sklearn PredictionErrorDisplay)
 # Predicted vs Actual CO₂ per Capita
 #The codes use in weak 2 project also tells about few features like ['gdp', 'energy_per_cap', 'pop', 'methane', 'nitrous', 'country', 'year']
-Weak 3
+
+#Weak 3
 #Make a full fledged working model/app of carbon emissions prediction
 #Brief description:Weak 1- Data Preparation.
                    Weak 2- Data Exploration.
