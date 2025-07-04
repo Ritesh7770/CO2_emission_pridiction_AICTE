@@ -8,9 +8,12 @@ Weak 1
 #The codes use in weak 2 project also tells about few features like ['gdp', 'energy_per_cap', 'pop', 'methane', 'nitrous', 'country', 'year']
 
 #Weak 3
+
 #Make a full fledged working model/app of carbon emissions prediction
+
 #Brief description:Weak 1- Data Preparation.
                    Weak 2- Data Exploration.
                    Weak 3- Model Building and Prediction.
+                   
 #Required Libraries are :- pip install numpy pandas streamlit matplotib scikit-learn.                   
                    
